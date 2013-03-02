@@ -1,0 +1,36 @@
+{
+  "name":                     "Beakon",
+  "version":                  "0.0.1",
+  "description":              "Pay locally",
+  "homepage":                 "https://beakon.heroku.com",
+  "source":                   "https://github.com/kynan/beakon",
+  "author":                   "Florian Rathgeber <florian.rathgeber@gmail.com>",
+  "keywords": [
+    "node"
+  ],
+  "licenses": [
+    {
+      "type":                 "BSD 3-Clause",
+      "url":                  "http://opensource.org/licenses/bsd-3-clause"
+    }
+  ],
+  "bugs": {
+    "url":                    "https://github.com/kynan/beakon/issues"
+  },
+  "repository": {
+    "type":                   "git",
+    "url":                    "git://github.com/kynan/beakon.git"
+  },
+  "engines": {
+    "node":                   ">= 0.10",
+    "coffee":                 ">= 1.6",
+    "jade":                   ">= 0.27",
+    "npm":                    ">= 1.2"
+  },
+  "dependencies": {
+    "zappajs":                ">= 0.4",
+    "jade":                   ">= 0.30",
+    "node-markdown":          ">= 0.1",
+    "coffee-script":          ">= 1.6"
+  }
+}
