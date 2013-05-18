@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 
 UserSchema = new mongoose.Schema
-  id: String
+  _id: String
   beacons: [{ type: mongoose.Schema.ObjectId, ref: 'Beacon' }]
 
 BeaconSchema = new mongoose.Schema

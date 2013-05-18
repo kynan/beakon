@@ -1,17 +1,37 @@
 port = process.env.PORT || 3000
-host = process.env.HOST || "0.0.0.0"
+host = process.env.HOST || "127.0.0.1"
+baseurl = process.env.BASEURL || "http://#{host}:#{port}"
 
 require('zappajs') host, port, ->
   manifest = require './package.json'
   db = require './db'
   fs = require 'fs'
   mongoose = require 'mongoose'
+  passport = require 'passport'
+  googOID = require('passport-google').Strategy
+
+  passport.use new googOID
+    returnURL: "#{baseurl}/auth/google/return"
+    , realm: baseurl
+    , (identifier, profile, done) ->
+      console.log 'user logged in:', identifier, profile
+      db.findOrCreateUser identifier, (err, user) ->
+        profile._id = identifier
+        done err, profile
+
+  passport.serializeUser (user, done) ->
+    done null, user
+
+  passport.deserializeUser (user, done) ->
+    db.findUserById user._id, done
 
   @configure =>
     @use 'cookieParser',
       'bodyParser',
       'methodOverride',
       'session': secret: 'shhhhhhhhhhhhhh!',
+      passport.initialize(),
+      passport.session(),
       @app.router,
       'static'
     @set 'view engine', 'jade'
@@ -24,6 +44,10 @@ require('zappajs') host, port, ->
     production: =>
       mongoose.connect process.env.MONGOHQ_URL || "mongodb://#{host}/#{manifest.name}"
       @use 'errorHandler'
+
+  # Authenication
+  @get '/auth/google', passport.authenticate 'google'
+  @get '/auth/google/return', passport.authenticate 'google', { successRedirect: '/', failureRedirect: '/login' }
 
   @get '/': ->
     @render 'index.html'
