@@ -25,7 +25,7 @@ require('zappajs') host, port, ->
       @use 'errorHandler'
 
   @get '/': ->
-    @response.redirect '/home'
+    @render 'index.html'
 
   @get '/home': ->
     md = require('node-markdown').Markdown
