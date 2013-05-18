@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "zappajs":                ">= 0.4",
+    "ejs":                    ">= 0.8",
     "jade":                   ">= 0.30",
     "mongoose":               ">= 3.6",
     "node-markdown":          ">= 0.1",
