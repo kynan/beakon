@@ -3,6 +3,7 @@ host = process.env.HOST || "0.0.0.0"
 
 require('zappajs') host, port, ->
   manifest = require './package.json'
+  db = require './db'
   fs = require 'fs'
   mongoose = require 'mongoose'
 
@@ -26,6 +27,10 @@ require('zappajs') host, port, ->
 
   @get '/': ->
     @render 'index.html'
+
+  @get '/beacons': ->
+    db.findBeaconsNear {lng: @query.lng or 51.5135, lat: @query.lat or -0.0868}, @query.radius or 100, (beacons) =>
+      @response.json beacons
 
   @get '/home': ->
     md = require('node-markdown').Markdown
