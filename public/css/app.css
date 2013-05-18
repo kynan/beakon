@@ -6,7 +6,9 @@ body {
   margin: 0px;
   padding: 0px;
 }
-#mapbg { height: 100%;}
+#mapbg {
+  height: 100%;
+}
 #wrapper {
   width: 100%;
   top: 0;
@@ -14,7 +16,7 @@ body {
 
 header {
   display: block;
-  height: 100%;
+  height: 75px;
   background: #222E3C;
   position: relative;
   text-align: center;
@@ -22,13 +24,18 @@ header {
   }
 
 header object {
-  padding: 1em;
+  padding: 0.75em;
   margin: 0.5em;
   display: inline-block;
 }
 header h1 {
   color: #FFF;
   font-family: Helvetica;
+}
+
+.col-full {
+  width: 100%;
+  margin: 0 -10px;
 }
 
 header a.newBeakon:link,
@@ -44,7 +51,7 @@ header a.newBeakon:active {
   position: absolute;
   height: 100%;
   width: 75px;
-  line-height: 1;
+  line-height: 75px;
   right: 0;
   font-size: 2em;
 }
