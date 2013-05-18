@@ -1,0 +1,61 @@
+html {
+  height: 100%
+}
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+#mapbg { height: 100%;}
+#wrapper {
+  width: 100%;
+  top: 0;
+}
+
+header {
+  display: block;
+  height: 100%;
+  background: #222E3C;
+  position: relative;
+  text-align: center;
+  margin: 0;
+  }
+
+header object {
+  padding: 1em;
+  margin: 0.5em;
+  display: inline-block;
+}
+header h1 {
+  color: #FFF;
+  font-family: Helvetica;
+}
+
+header a:link,
+header a:visited,
+/*header a:focus,
+header a:hover,*/
+header a:active {
+  background: #162427;
+  color: #FFF;
+  border: none;
+  text-decoration: none;
+  outline: none;
+  position: absolute;
+  height: 100%;
+  width: 75px;
+  line-height: 1;
+  right: 0;
+  font-size: 2em;
+}
+
+.subNav1, .subNav2 {
+  color: #FFF;
+  text-align:center;
+}
+.subNav1 {
+  background: #79CBC7;
+}
+.subNav2 {
+  background: #F07A48;
+}
