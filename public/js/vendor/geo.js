@@ -52,24 +52,27 @@ function setupEvents() {
         beacon.setMap(null);
       });
 
-      // Create new markers
-      function getRandomInRange(from, to, fixed) {
-        return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
-        // .toFixed() returns string, so ' * 1' is a trick to convert to number
-      }
-      function r() {return getRandomInRange(-180, 180, 3);}
-      var data = [{lat: r(), long: r()}, {lat: r(), long: r()}, {lat: r(), long: r()}, {lat: r(), long: r()}];
-
-      var marker;
-      for (i = 0; i < data.length; i++) {
-        var item = data[i];
-        marker = new google.maps.Marker({
-          position: new google.maps.LatLng(item.lat, item.long),
-          map: map,
-          title:"dummy"
-        });
-        beacons.push(marker);
-      }
+      var currentBounds = map.getBounds();
+      $.ajax({
+        dataType: "json",
+        url: '/beacons',
+        type: 'POST',
+        data: {
+          ne: {lat: currentBounds.getNorthEast().lat(), lng: currentBounds.getSouthWest().lng()},
+          sw: {lat: currentBounds.getSouthWest().lat(), lng: currentBounds.getSouthWest().lng()}
+        },
+        success: function(data) {
+          var marker;
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(item.location.lng, item.location.lat),
+              map: map,
+              title:"dummy"
+            });
+            beacons.push(marker);
+          }
+        }});
     }, 500);
   });
 }
