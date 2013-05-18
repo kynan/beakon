@@ -46,19 +46,12 @@ require('zappajs') host, port, ->
       @use 'errorHandler'
 
   # Authenication
+
   @get '/auth/google', passport.authenticate 'google'
   @get '/auth/google/return', passport.authenticate 'google', { successRedirect: '/', failureRedirect: '/login' }
 
   @get '/': ->
     @render 'index.html'
-
-  @post '/beacons': ->
-    db.addBeacon @body, (newbeacon) =>
-      @response.json newbeacon
-
-  @get '/beacons': ->
-    db.findBeaconsNear {lng: @query.lng or 51.5135, lat: @query.lat or -0.0868}, @query.radius or 100, (beacons) =>
-      @response.json beacons
 
   @get '/home': ->
     md = require('node-markdown').Markdown
@@ -67,3 +60,13 @@ require('zappajs') host, port, ->
 
   @get '/source': ->
     @response.redirect manifest.source
+
+  # API
+
+  @post '/beacons': ->
+    db.addBeacon @body, (newbeacon) =>
+      @response.json newbeacon
+
+  @get '/beacons': ->
+    db.findBeaconsNear {lng: @query.lng or 51.5135, lat: @query.lat or -0.0868}, @query.radius or 100, (beacons) =>
+      @response.json beacons
