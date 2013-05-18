@@ -29,6 +29,10 @@ require('zappajs') host, port, ->
     @render 'index.html'
 
   @post '/beacons': ->
+    db.addBeacon @body, (newbeacon) =>
+      @response.json newbeacon
+
+  @get '/beacons': ->
     db.findBeaconsNear {lng: @query.lng or 51.5135, lat: @query.lat or -0.0868}, @query.radius or 100, (beacons) =>
       @response.json beacons
 
