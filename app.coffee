@@ -51,7 +51,10 @@ require('zappajs') host, port, ->
   @get '/auth/google/return', passport.authenticate 'google', { successRedirect: '/', failureRedirect: '/login' }
 
   @get '/': ->
-    @render 'index.html'
+    @render 'index.jade'
+
+  @get '/beacons/add': ->
+    @render 'add.jade'
 
   @get '/home': ->
     md = require('node-markdown').Markdown
