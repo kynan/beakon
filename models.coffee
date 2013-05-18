@@ -19,8 +19,10 @@ BeaconSchema = new mongoose.Schema
     type: Date
     default: Date.now
   location:
-    lng: Number
-    lat: Number
+    type:
+      lng: Number
+      lat: Number
+    index: '2d'
   radius: Number
   hidden: Boolean
   active: Boolean
