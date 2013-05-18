@@ -14,14 +14,25 @@ body {
   top: 0;
 }
 
+button {
+  box-shadow: none;
+  border: none;
+}
+
 header {
   display: block;
   height: 75px;
   background: #222E3C;
   position: relative;
-  text-align: center;
+  text-align: left;
   margin: 0;
+}
+
+@media only screen and (min-width: 48em) {
+  header {
+    text-align: center;
   }
+}
 
 header object {
   padding: 0.75em;
@@ -54,6 +65,7 @@ header a.newBeakon:active {
   line-height: 75px;
   right: 0;
   font-size: 2em;
+  text-align: center;
 }
 
 footer {
@@ -73,4 +85,60 @@ footer {
 }
 .subNav2 {
   background: #F07A48;
+}
+
+
+
+
+
+
+/* Oh Hai */
+
+#submit-form label, #submit-form input  {
+  font-size: 1.25em;
+}
+
+#submit-form {
+  margin-bottom : 1em;
+}
+
+#ccnumber {
+  width: 100%;
+}
+
+.reveal label {
+  color: #000;
+  margin-left: 1em;
+  display: inline;
+}
+
+.form-row {
+  border: 1px solid #b4becd;
+  background: #FFF;
+  padding: 0.5em 0;
+}
+.form-row-top {
+  border-radius: 0.5em 0.5em 0 0;
+  border-bottom: none;
+}
+.form-row-bottom {
+  border-radius:0 0 0.5em 0.5em;
+  border-top: none;
+  margin-bottom: 1em;
+}
+.form-row input, .form-row input:focus {
+  border: none;
+  background: #FFF;
+  box-shadow: none;
+  display: inline;
+  width: auto;
+}
+.form-row input.dateField, .form-row input.dateField:focus {
+  width: 2em;
+  padding: 0;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
