@@ -16,10 +16,11 @@
 
   <section id="wrapper">
     <header>
-      <a href="">-</a>
-      <object data="img/beakon.svg" type="img/svg+xml" alt="beakon">
-        <img src="img/beakon.png" width="190px" height="35px" alt="Beakon">
-      </object>
+      <a href="/">
+        <object data="img/beakon.svg" type="img/svg+xml" alt="beakon">
+          <img src="img/beakon.png" width="190px" height="35px" alt="Beakon">
+        </object>
+      </a>
     </header>
     <div class="row">
       <div class="twelve columns">
@@ -27,13 +28,32 @@
         <form action="">
           
           <input type="submit" value="Stop this beakon" class="button">
-          <input type="submit" value="Extend this beakon" class="secondary button">
-
+          <input type="submit" value="Extend this beakon" data-reveal-id="extendBeakon" class="secondary button">
+  
         </form>
       </div>
     </div>
     
   </section>
+
+<!-- extension modal -->
+
+<div id="extendBeakon" class="reveal-modal">
+  <h2>Extend this Beakon.</h2>
+  <p class="lead">how long for?</p>
+  <select name="" id="">
+    <option value="30 mins">30 mins</option>
+    <option value="1 hour">1 hour</option>
+    <option value="2 hours">2 hours</option>
+    <option value="3 hours">3 hours</option>
+  </select>
+  <input type="submit" class="primary button" value="Extend">
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+
+
+
   
   <script>
     document.write('<script src=' +

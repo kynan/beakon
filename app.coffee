@@ -14,6 +14,7 @@ require('zappajs') host, port, ->
       @app.router,
       'static'
     @set 'view engine', 'jade'
+    @app.engine 'html', require('ejs').renderFile
 
   @configure
     development: =>

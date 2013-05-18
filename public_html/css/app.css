@@ -31,11 +31,11 @@ header h1 {
   font-family: Helvetica;
 }
 
-header a:link,
-header a:visited,
+header a.newBeakon:link,
+header a.newBeakon:visited,
 /*header a:focus,
 header a:hover,*/
-header a:active {
+header a.newBeakon:active {
   background: #162427;
   color: #FFF;
   border: none;
@@ -47,6 +47,14 @@ header a:active {
   line-height: 1;
   right: 0;
   font-size: 2em;
+}
+
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: #222E3C;
+  color: #FFF;
 }
 
 .subNav1, .subNav2 {
