@@ -23,7 +23,7 @@
     </header>
     <div class="row">
       <div class="large-12 columns">
-          <img src="/img/coffee.jpg" alt="coffee for a quid!">
+          <img src="<%= beacon.image %>" alt="coffee for a quid!">
       </div>
     </div>
     <div class="row">
@@ -34,7 +34,7 @@
         <form action='/pay'>
             <input type="hidden" name="beacon" value="<%= beaconId %>">
             <button type="submit">
-              Buy now
+              £<%= beacon.price %> Buy now
             </button>
         </form>
       </div>
