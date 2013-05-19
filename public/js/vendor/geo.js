@@ -84,12 +84,14 @@ function setupEvents() {
             marker = new google.maps.Marker({
               position: new google.maps.LatLng(item.location.lat, item.location.lng),
               map: map,
-              title:"dummy",
+              title:item.title,
               icon: "/img/beakon-pin.png"
             });
-            google.maps.event.addListener(marker, 'click', function() {
-              window.location.href = '/beacon/'+item._id
-            });
+            (function(item){
+              google.maps.event.addListener(marker, 'click', function() {
+                window.location.href = '/beacon/'+item._id
+              });
+            })(item);
             beacons.push(marker);
           }
         }});
