@@ -79,10 +79,13 @@ function setupEvents() {
           var marker;
           for (i = 0; i < data.length; i++) {
             var item = data[i];
+            if (!item.location)
+              continue;
             marker = new google.maps.Marker({
               position: new google.maps.LatLng(item.location.lat, item.location.lng),
               map: map,
-              title:"dummy"
+              title:"dummy",
+              icon: "/img/beakon-pin.png"
             });
             google.maps.event.addListener(marker, 'click', function() {
               window.location.href = '/beacon/'+item._id
