@@ -1,6 +1,6 @@
 port = process.env.PORT || 3000
-host = process.env.HOST || "127.0.0.1"
-baseurl = process.env.BASEURL || "http://#{host}:#{port}"
+host = process.env.HOST || "0.0.0.0"
+baseurl = process.env.BASEURL || "http://localhost:#{port}"
 
 require('zappajs') host, port, ->
   manifest = require './package.json'
