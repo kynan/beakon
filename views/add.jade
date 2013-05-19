@@ -1,54 +1,38 @@
-!!! 5
-//if IE 8
-  html.no-js.lt-ie9(lang='en')  
-// [if gt IE 8] <!
-html.no-js(lang='en')
-  // <![endif]
-  html(lang='en')
-    head
-      meta(charset='utf-8')
-      title Beekon
-      meta(name='viewport', content='initial-scale=1.0, user-scalable=no')
-      link(rel='stylesheet', href='/css/foundation.css')
-      link(rel='stylesheet', href='/css/app.css')
-    body
-      script(type='text/javascript', src='http://maps.google.com/maps/api/js?sensor=false')
-      section#wrapper
-        header
-          a(href='/')
-            object(data='/img/beakon.svg', type='img/svg+xml', alt='beakon')
-              img(src='/img/beakon.png', width='190px', height='35px', alt='Beakon')
-        .row
-          .large-12.small-12.columns
-            h1 Create a Beakon
-            form(action='/pay')
-              label(for='') Name of Beakon
-              input(type='text', value='', placeholder='Joe"s Hamburgers')
-              label(for='') Title
-              input(type='text', value='', placeholder='Half price Half pound cheeseburgers')
-              .row
-                .large-6.small-6.columns
-                  label(for='') Quantity
-                  input(type='number', value='', placeholder='1')
-                .large-6.small-6.columns
-                  label(for='') Price
-                  input(type='text', value='', placeholder='£2.50')
-              label(for='') Expires in:
-              select
-                option(value='1 hour') 1 hour
-                option(value='2 hours') 2 hours
-                option(value='3 hours') 3 hours
-                option(value='4 hours') 4 hours
-              input(type='file', accept='image/*', capture='camera')
-              input.primary.button(type='submit', value='Set up this beakon')
-        footer
-          .col-full
-            ul.small-block-grid-2
-              li History
-              li Customers
-      script(src='/js/vendor/custom.modernizr.js')
-      script(src='/js/vendor/jquery.js')
-      script(src='/js/vendor/geo.js')
-      script(src='/js/foundation.min.js')
-      script
-        $(document).foundation();
+extends layout
+
+block body
+  section#wrapper
+    header
+      a(href='/')
+        object(data='/img/beakon.svg', type='img/svg+xml', alt='beakon')
+          img(src='/img/beakon.png', width='190px', height='35px', alt='Beakon')
+    .row
+      .large-12.small-12.columns
+        h1 Create a Beakon
+        form(action='/beacons', method='post', enctype='multipart/form-data')
+          input(name='location[lng]', type='hidden', value='')
+          input(name='location[lat]', type='hidden', value='')
+          label(for='') Name of Beakon
+          input(name='title', type='text', value='', placeholder='Joe"s Hamburgers')
+          label(for='') Title
+          input(name='description', type='text', value='', placeholder='Half price Half pound cheeseburgers')
+          .row
+            .large-6.small-6.columns
+              label(for='') Quantity
+              input(name='quantity', type='number', value='', placeholder='1')
+            .large-6.small-6.columns
+              label(for='') Price £
+              input(name='price', type='number', value='', placeholder='2.50')
+          label(for='') Expires in:
+          select(name='expiry')
+            option(value='1') 1 hour
+            option(value='2') 2 hours
+            option(value='3') 3 hours
+            option(value='4') 4 hours
+          input(name='image', type='file', accept='image/*', capture='camera')
+          input.primary.button(type='submit', value='Set up this beakon')
+    footer
+      .col-full
+        ul.small-block-grid-2
+          li History
+          li Customers
