@@ -39,13 +39,27 @@
               <input type="text" value="" placeholder="£2.50">
             </div>
           </div>
-          <label for="">Expires in:</label>
-          <select>
-            <option value="1 hour">1 hour</option>
-            <option value="2 hours">2 hours</option>
-            <option value="3 hours">3 hours</option>
-            <option value="4 hours">4 hours</option>
-          </select>
+          <div class="row">
+            <div class="large-6 small-6 columns">
+              <label for="">Allow Payments:</label>
+              <div class="switch large round">
+                <input id="z" name="switch-z" type="radio" >
+                <label for="z" onclick="">Off</label>
+                <input id="z1" name="switch-z" type="radio">
+                <label for="z1" onclick="" checked>On</label>
+                <span></span>
+              </div>
+            </div>
+            <div class="large-6 small-6 columns">
+              <label for="">Expires in:</label>
+                <select>
+                  <option value="1 hour">1 hour</option>
+                  <option value="2 hours">2 hours</option>
+                  <option value="3 hours">3 hours</option>
+                  <option value="4 hours">4 hours</option>
+                </select>
+            </div>
+          </div>
           <input type="file" accept="image/*" capture="camera">
           <input type="submit" value="Set up this beakon" class="primary button">
         </form>
