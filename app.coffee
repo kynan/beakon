@@ -21,21 +21,6 @@ require('zappajs') host, port, ->
   passport = require 'passport'
   googOID = require('passport-google').Strategy
 
-  passport.use new googOID
-    returnURL: "#{baseurl}/auth/google/return"
-    , realm: baseurl
-    , (identifier, profile, done) ->
-      console.log 'user logged in:', identifier, profile
-      db.findOrCreateUser identifier, (err, user) ->
-        profile._id = identifier
-        done err, profile
-
-  passport.serializeUser (user, done) ->
-    done null, user
-
-  passport.deserializeUser (user, done) ->
-    db.findUserById user._id, done
-
   gateway = braintree.connect({
     environment: braintree.Environment.Sandbox,
     merchantId: "6nfqbd84b88kwvkt",
@@ -65,13 +50,37 @@ require('zappajs') host, port, ->
 
   # Authenication
 
+  passport.use new googOID
+    returnURL: "#{baseurl}/auth/google/return"
+    , realm: baseurl
+    , (identifier, profile, done) ->
+      console.log 'user logged in:', identifier, profile
+      db.findOrCreateUser identifier, (err, user) ->
+        profile._id = identifier
+        done err, profile
+
+  passport.serializeUser (user, done) ->
+    done null, user
+
+  passport.deserializeUser (user, done) ->
+    db.findUserById user._id, done
+
+  ensureAuthenticated = (req, res, next) ->
+    if req.isAuthenticated()
+      return next()
+    req.session.redirect_to = req.path
+    res.redirect '/auth/google'
+
   @get '/auth/google', passport.authenticate 'google'
-  @get '/auth/google/return', passport.authenticate 'google', { successRedirect: '/', failureRedirect: '/login' }
+  @get '/auth/google/return', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) ->
+    target = req.session.redirect_to || '/'
+    delete req.session.redirect_to
+    res.redirect target
 
   @get '/': ->
     @render 'index.jade'
 
-  @get '/beacons/add': ->
+  @get '/beacons/add', ensureAuthenticated, ->
     @render 'add.jade'
 
   @get '/pay': ->
@@ -106,9 +115,11 @@ require('zappajs') host, port, ->
 
   # API
 
-  @post '/beacons': ->
-    db.addBeacon @body, (newbeacon) =>
-      console.log newbeacon
+  @post '/beacons', ensureAuthenticated, ->
+    beacon = @body
+    beacon.userId = @request.user._id
+    db.addBeacon beacon, (newbeacon) =>
+      console.log 'Beacon created', newbeacon
       @response.redirect '/'
 
   @get '/beacons': ->
