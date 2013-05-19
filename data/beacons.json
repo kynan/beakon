@@ -1,4 +1,4 @@
-{"location": {"lng": 51.5135, "lat": -0.0868}, "title": "Jimbo's Sandwiches", "description": "Tasty sandwiches", "price": 1.00, "startDate": "2013-05-19T14:02:45.273Z", "endDate": "2013-05-19T18:02:45.273Z" }
-{"location": {"lng": 51.5248, "lat": -0.0873}, "title": "Kati Roll Company", "description": "Tasty rolls", "price":  2.00, "startDate": "2013-05-19T14:02:45.273Z", "endDate": "2013-05-19T18:02:45.273Z" }
-{"location": {"lng": 51.5252, "lat": -0.0896}, "title": "Lulu's", "description": "Great coffee", "price":  3.00, "startDate": "2013-05-19T14:02:45.273Z", "endDate": "2013-05-19T18:02:45.273Z" }
-{"location": {"lng": 51.5256, "lat": -0.0871}, "title": "Joe's Hamburgers", "description": "Tasty hamburgers", "price":  4.00, "startDate": "2013-05-19T14:02:45.273Z", "endDate": "2013-05-19T18:02:45.273Z" }
+{"location": {"lng": -0.0868, "lat": 51.5135}, "title": "Jimbo's Sandwiches", "description": "Tasty sandwiches", "price": 1.00, "startDate": "2013-05-19T14:02:45.273Z", "endDate": "2013-05-19T18:02:45.273Z" }
+{"location": {"lng": -0.0873, "lat": 51.5248}, "title": "Kati Roll Company", "description": "Tasty rolls", "price":  2.00, "startDate": "2013-05-19T14:02:45.273Z", "endDate": "2013-05-19T18:02:45.273Z" }
+{"location": {"lng": -0.0896, "lat": 51.5252}, "title": "Lulu's", "description": "Great coffee", "price":  3.00, "startDate": "2013-05-19T14:02:45.273Z", "endDate": "2013-05-19T18:02:45.273Z" }
+{"location": {"lng": -0.0871, "lat": 51.5256}, "title": "Joe's Hamburgers", "description": "Tasty hamburgers", "price":  4.00, "startDate": "2013-05-19T14:02:45.273Z", "endDate": "2013-05-19T18:02:45.273Z" }
