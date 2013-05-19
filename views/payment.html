@@ -49,6 +49,7 @@
                 <input name="cvv" type="text" size="4" data-stripe="cvc" placeholder="123"/>
               </div>
             </div>
+            <input type="hidden" name="beacon" value="<%= beaconId %>">
             <button class="primary button" id="emailsubmit" data-name="<?php echo $products[$i]['name']; ?>" data-price="<?php echo $products[$i]['price']; ?>" data-product-id="<?php echo $products[$i]['product_id']; ?>" type="submit">Save Card Details</button>
           </form>
       </div>

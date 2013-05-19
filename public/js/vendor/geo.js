@@ -82,6 +82,9 @@ function setupEvents() {
               map: map,
               title:"dummy"
             });
+            google.maps.event.addListener(marker, 'click', function() {
+              window.location.href = '/beacons/1'
+            });
             beacons.push(marker);
           }
         }});

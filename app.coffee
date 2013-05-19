@@ -83,32 +83,39 @@ require('zappajs') host, port, ->
   @get '/beacons/add', ensureAuthenticated, ->
     @render 'add.jade'
 
+  @get '/beakon/:id': ->
+    @render 'product.html', {beaconId: @params.id}
+
   @get '/pay': ->
-    @render 'payment.html'
+    @render 'payment.html', {beaconId: @query.beacon}
 
   @post '/pay/execute', (req, res) ->
-    saleRequest = {
-      amount: "217.00",
-      creditCard: {
-        number: @body.ccnumber,
-        cvv: @body.cvv,
-        expirationMonth: @body.exp_month,
-        expirationYear: @body.exp_year
-      },
-      options: {
-        submitForSettlement: true,
-        storeInVaultOnSuccess: true
+    db.findBeaconById @body.beacon, (beacon) =>
+      console.log "sdf"
+      console.log beacon, beacon.price
+      saleRequest = {
+        amount: beacon.price,
+        creditCard: {
+          number: @body.ccnumber,
+          cvv: @body.cvv,
+          expirationMonth: @body.exp_month,
+          expirationYear: @body.exp_year
+        },
+        options: {
+          submitForSettlement: true,
+          storeInVaultOnSuccess: true
+        }
       }
-    }
 
-    gateway.transaction.sale(
-      saleRequest, (err, result) ->
-        console.log err, result
-        if result.success
-          ourTransactionId = generateRandomString(5)
-          res.redirect '/success/'+ourTransactionId
-        else
-          res.send "<h1>Error:  " + result.message + "</h1>")
+      gateway.transaction.sale(
+        saleRequest, (err, result) ->
+          #console.log err, result
+          if result.success
+            ourTransactionId = generateRandomString(5)
+            db.createTransaction 1, 1, ourTransactionId
+            res.redirect '/success/'+ourTransactionId
+          else
+            res.send "<h1>Error:  " + result.message + "</h1>")
 
   @get '/success/:id': ->
     @render 'success.html', {transactionId: @params.id}
