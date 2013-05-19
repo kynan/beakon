@@ -84,7 +84,9 @@ require('zappajs') host, port, ->
     @render 'add.jade'
 
   @get '/beacon/:id': ->
-    @render 'product.html', {beaconId: @params.id}
+    db.findBeaconById @params.id, (beacon) =>
+      console.log beacon
+      @render 'product.html', {beaconId: @params.id, beacon: beacon}
 
   @get '/pay': ->
     @render 'payment.html', {beaconId: @query.beacon}
