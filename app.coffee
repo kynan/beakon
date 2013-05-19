@@ -83,7 +83,7 @@ require('zappajs') host, port, ->
   @get '/beacons/add', ensureAuthenticated, ->
     @render 'add.jade'
 
-  @get '/beakon/:id': ->
+  @get '/beacon/:id': ->
     @render 'product.html', {beaconId: @params.id}
 
   @get '/pay': ->

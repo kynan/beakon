@@ -85,7 +85,7 @@ function setupEvents() {
               title:"dummy"
             });
             google.maps.event.addListener(marker, 'click', function() {
-              window.location.href = '/beacons/'+item._id
+              window.location.href = '/beacon/'+item._id
             });
             beacons.push(marker);
           }
