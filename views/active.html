@@ -87,7 +87,7 @@
           <ul class="panes">
             <% for (var i=0; i<history.length; i++) { %>
             <li>
-              <img src="/img/hotdog.jpg" alt="Peter Blatchford" class="avatar">
+              <img src="<%= history[i].image %>" alt="Peter Blatchford" class="avatar">
               <h4><%=history[i] .title %></h4>
               <span class="right price">£<%=history[i].price %></span>
               <span class="isMeta"><%=history[i].startDate %></span>
