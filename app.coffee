@@ -126,8 +126,11 @@ require('zappajs') host, port, ->
     beacon = @body
     beacon.userId = @request.user._id
     db.addBeacon beacon, (newbeacon) =>
-      console.log 'Beacon created', newbeacon
-      @response.redirect '/'
+      @response.redirect '/beacon'
+
+  # Show the current beacon
+  @get '/beacon', ensureAuthenticated, ->
+    @render 'active.html'
 
   @get '/beacons': ->
     if @query.nelng and @query.nelat and @query.swlng and @query.swlat
