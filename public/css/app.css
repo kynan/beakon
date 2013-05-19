@@ -1,10 +1,11 @@
 html {
+  height: 100%;
 }
 body {
   margin: 0px;
   padding: 0px;
   background: #EAEAEA;
-
+  height: 100%;
 }
 #mapbg {
   height: 100%;
@@ -15,6 +16,17 @@ body {
 
 .isMeta {
   opacity: 0.5;
+}
+
+.isCentered {
+  text-align: center;
+}
+
+img.tick {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: auto;
 }
 
 .button {
@@ -254,6 +266,11 @@ span.label.label-large {
   font-size: 1.5em;
   font-weight: 900;
 
+}
+
+span.label.label-huge {
+  font-size: 2em;
+  margin-bottom: 0.5em;
 }
 
 .panes h4 {
