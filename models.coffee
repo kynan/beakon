@@ -6,31 +6,18 @@ UserSchema = new mongoose.Schema
 
 BeaconSchema = new mongoose.Schema
   identifier: String
-  userId: { type: mongoose.Schema.ObjectId, ref: 'User' }
-  title: String
-  description: String
-  address: String
-  phone: String
-  email: String
+  location:
+    type:
+      lng: Number
+      lat: Number
+    index: '2d'
   startDate:
     type: Date
     default: Date.now
   endDate:
     type: Date
     default: Date.now
-  location:
-    type:
-      lng: Number
-      lat: Number
-    index: '2d'
-  radius: Number
-  hidden: Boolean
-  active: Boolean
-  offers: [{ type: mongoose.Schema.ObjectId, ref: 'Offer' }]
-
-OfferSchema = new mongoose.Schema
-  identifier: String
-  beaconId: { type: mongoose.Schema.ObjectId, ref: 'Beacon' }
+  userId: { type: mongoose.Schema.ObjectId, ref: 'User' }
   price: Number
   quantity: Number
   title: String
@@ -50,10 +37,8 @@ TransactionSchema = new mongoose.Schema
 
 User = mongoose.model 'User', UserSchema
 Beacon = mongoose.model 'Beacon', BeaconSchema
-Offer = mongoose.model 'Offer', OfferSchema
 Transaction = mongoose.model 'Transaction', TransactionSchema
 
 module.exports.user = User
 module.exports.beacon = Beacon
-module.exports.offer = Offer
 module.exports.transaction = Transaction
