@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="css/foundation.css" />
   <link rel="stylesheet" href="css/app.css" />
   <script src="js/vendor/custom.modernizr.js"></script>
-  <script src="js/vendor/geo.js"></script>
 </head>
 <body>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -38,15 +37,15 @@
                 <label class="inline">
                   <span>Expiry</span>
                 </label>
-                <input type="number" class="dateField" min="1" max="12" size="2" placeholder="MM" data-stripe="exp-month"/>
-                <input type="number" class="dateField" max="18" size="2" placeholder="YY" data-stripe="exp-year"/>  
+                <input type="number" id="exp-month" class="dateField" min="1" max="12" size="2" placeholder="MM" data-stripe="exp-month"/>
+                <input type="number" id="exp-year" class="dateField" max="18" size="2" placeholder="YY" data-stripe="exp-year"/>  
                 </label>
               </div>
               <div class="large-6 small-6 columns">
                 <label class="inline">
                   <span>CVV</span>
                 </label>
-                <input type="text" size="4" data-stripe="cvc" placeholder="123"/>
+                <input type="text" id="card-cvv" size="4" data-stripe="cvc" placeholder="123"/>
               </div>
             </div>
             <button class="primary button" id="emailsubmit" data-name="<?php echo $products[$i]['name']; ?>" data-price="<?php echo $products[$i]['price']; ?>" data-product-id="<?php echo $products[$i]['product_id']; ?>" type="submit">Save Card Details</button>
@@ -60,6 +59,28 @@
     document.write('<script src=' +
     ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
     '.js><\/script>')
+  </script>
+  
+  <script>
+    $(function() {
+      $('#ccnumber').on('input', function() {
+        if ($(this).val().length >= 15) {
+          $('#exp-month')[0].focus();
+        }
+      });
+      $('#exp-month').on('input', function() {
+        console.log($(this).val().length);
+        if ($(this).val().length >= 1) {
+          $('#exp-year')[0].focus();
+        }
+      });
+      $('#exp-year').on('input', function() {
+        if ($(this).val().length >= 1) {
+          $('#card-cvv')[0].focus();
+        }
+      });
+    });
+    
   </script>
 
   <script src="js/foundation.min.js"></script>
