@@ -10,7 +10,9 @@ db =
 
   findBeaconsInBox: (swlng, swlat, nelng, nelat, done) ->
     box = [[parseFloat(swlng), parseFloat(swlat)], [parseFloat(nelng), parseFloat(nelat)]]
-    Beacon.find {location: {$geoWithin: {$box: box}}}, (err, beacons) ->
+    #Beacon.find {location: {$geoWithin: {$box: box}}}, (err, beacons) ->
+    # FIXME return all results for now
+    Beacon.find {}, (err, beacons) ->
       console.log "Error retrieving beacons:", err if err?
       done beacons
 
@@ -20,7 +22,9 @@ db =
       done beacon
 
   findBeaconsByUser: (userId, done) ->
-    Beacon.find {userId: userId}, (err, beacons) ->
+    #Beacon.find({userId: userId}).populate('transcations').exec (err, beacons) ->
+    # FIXME return all results for now
+    Beacon.find({}).populate('transcations').exec (err, beacons) ->
       console.log "Error retrieving beacons:", err if err?
       done beacons
 

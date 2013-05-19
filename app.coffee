@@ -118,7 +118,7 @@ require('zappajs') host, port, ->
             res.send "<h1>Error:  " + result.message + "</h1>")
 
   @get '/success/:id': ->
-    @render 'success.html', {transactionId: @params.id}
+    @render 'receipt.html', {transactionId: @params.id}
 
   # API
 
