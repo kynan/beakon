@@ -20,24 +20,36 @@ function createMap() {
   });
 }
 
+function initMap(coords) {
+  $('#status').hide();
+
+  var latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
+  map.setCenter(latlng);
+
+  var marker = new google.maps.Marker({
+    position: latlng,
+      map: map,
+      title:"You are here! (at least within a "+coords.accuracy+" meter radius)"
+  });
+}
+
 function loadUserLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      $('#status').hide();
-
-      var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      map.setCenter(latlng);
-
-      var marker = new google.maps.Marker({
-        position: latlng,
-        map: map,
-        title:"You are here! (at least within a "+position.coords.accuracy+" meter radius)"
-      });
-    }, function() {
-      // TODO: You can't really use the app without a location
-    });
+  if (sessionStorage.coords) {
+    initMap(JSON.parse(sessionStorage.coords));
   } else {
-    // TODO: You can't really use the app
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        sessionStorage.coords = JSON.stringify({latitude: position.coords.latitude,
+          longitude: position.coords.longitude, accuracy: position.coords.accuracy});
+        console.log(position);
+        console.log(sessionStorage);
+        initMap(position.coords);
+      }, function() {
+        // TODO: You can't really use the app without a location
+      });
+    } else {
+      // TODO: You can't really use the app
+    }
   }
 }
 

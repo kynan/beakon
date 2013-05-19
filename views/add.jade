@@ -21,25 +21,27 @@ html.no-js(lang='en')
         .row
           .large-12.small-12.columns
             h1 Create a Beakon
-            form(action='active.html')
+            form(action='/beacons', method='post', enctype='multipart/form-data')
+              input(name='location[lng]', type='hidden', value='')
+              input(name='location[lat]', type='hidden', value='')
               label(for='') Name of Beakon
-              input(type='text', value='', placeholder='Joe"s Hamburgers')
+              input(name='title', type='text', value='', placeholder='Joe"s Hamburgers')
               label(for='') Title
-              input(type='text', value='', placeholder='Half price Half pound cheeseburgers')
+              input(name='description', type='text', value='', placeholder='Half price Half pound cheeseburgers')
               .row
                 .large-6.small-6.columns
                   label(for='') Quantity
-                  input(type='number', value='', placeholder='1')
+                  input(name='quantity', type='number', value='', placeholder='1')
                 .large-6.small-6.columns
-                  label(for='') Price
-                  input(type='text', value='', placeholder='£2.50')
+                  label(for='') Price £
+                  input(name='price', type='number', value='', placeholder='2.50')
               label(for='') Expires in:
-              select
-                option(value='1 hour') 1 hour
-                option(value='2 hours') 2 hours
-                option(value='3 hours') 3 hours
-                option(value='4 hours') 4 hours
-              input(type='file', accept='image/*', capture='camera')
+              select(name='expiry')
+                option(value='1') 1 hour
+                option(value='2') 2 hours
+                option(value='3') 3 hours
+                option(value='4') 4 hours
+              input(name='image', type='file', accept='image/*', capture='camera')
               input.primary.button(type='submit', value='Set up this beakon')
         footer
           .col-full

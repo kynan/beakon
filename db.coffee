@@ -9,6 +9,7 @@ db =
       done beacons
 
   addBeacon: (beacon, done) ->
+    beacon.endDate = Date.now() + parseInt(beacon.expiry, 1) * 3600 * 1000
     Beacon.create beacon, (err, newbeacon) ->
       console.log "Error creating beacon", beacon, ":", err if err?
       done newbeacon
