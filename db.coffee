@@ -19,6 +19,11 @@ db =
       console.log "Error retrieving beacon:", err if err?
       done beacon
 
+  findBeaconsByUser: (userId, done) ->
+    Beacon.find {userId: userId}, (err, beacons) ->
+      console.log "Error retrieving beacons:", err if err?
+      done beacons
+
   addBeacon: (beacon, done) ->
     beacon.endDate = Date.now() + parseInt(beacon.expiry) * 3600 * 1000
     Beacon.create beacon, (err, newbeacon) ->

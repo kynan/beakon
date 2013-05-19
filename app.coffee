@@ -91,8 +91,6 @@ require('zappajs') host, port, ->
 
   @post '/pay/execute', (req, res) ->
     db.findBeaconById @body.beacon, (beacon) =>
-      console.log "sdf"
-      console.log beacon, beacon.price
       saleRequest = {
         amount: beacon.price,
         creditCard: {
@@ -126,8 +124,12 @@ require('zappajs') host, port, ->
     beacon = @body
     beacon.userId = @request.user._id
     db.addBeacon beacon, (newbeacon) =>
-      console.log 'Beacon created', newbeacon
-      @response.redirect '/'
+      @response.redirect '/beacon'
+
+  # Show the current beacon
+  @get '/beacon', ensureAuthenticated, ->
+    beacons = db.findBeaconsByUser @request.user._id, (beacons) =>
+      @render 'active.html', {history: beacons}
 
   @get '/beacons': ->
     if @query.nelng and @query.nelat and @query.swlng and @query.swlat
