@@ -8,8 +8,19 @@ db =
       console.log "Error retrieving beacons:", err if err?
       done beacons
 
+  findBeaconsInBox: (swlng, swlat, nelng, nelat, done) ->
+    box = [[parseFloat(swlng), parseFloat(swlat)], [parseFloat(nelng), parseFloat(nelat)]]
+    Beacon.find {location: {$geoWithin: {$box: box}}}, (err, beacons) ->
+      console.log "Error retrieving beacons:", err if err?
+      done beacons
+
+  findBeaconById: (id, done) ->
+    Beacon.findById id, (err, beacon) ->
+      console.log "Error retrieving beacon:", err if err?
+      done beacon
+
   addBeacon: (beacon, done) ->
-    beacon.endDate = Date.now() + parseInt(beacon.expiry, 1) * 3600 * 1000
+    beacon.endDate = Date.now() + parseInt(beacon.expiry) * 3600 * 1000
     Beacon.create beacon, (err, newbeacon) ->
       console.log "Error creating beacon", beacon, ":", err if err?
       done newbeacon
@@ -26,5 +37,12 @@ db =
         User.create {_id: id}, (err, newuser) ->
           console.log "Error creating user", {_id: id}, ":", err if err?
           done err, newuser
+
+  createTransaction: (beaconId, buyerId, transactionId) ->
+    Beacon.create {
+      identifier: transactionId,
+      beaconId: beaconId,
+      buyerId: buyerId
+    }
 
 module.exports = db

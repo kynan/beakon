@@ -68,10 +68,12 @@ function setupEvents() {
       $.ajax({
         dataType: "json",
         url: '/beacons',
-        type: 'POST',
+        type: 'GET',
         data: {
-          ne: {lat: currentBounds.getNorthEast().lat(), lng: currentBounds.getSouthWest().lng()},
-          sw: {lat: currentBounds.getSouthWest().lat(), lng: currentBounds.getSouthWest().lng()}
+          swlng: currentBounds.getSouthWest().lng(),
+          swlat: currentBounds.getSouthWest().lat(),
+          nelng: currentBounds.getNorthEast().lng(),
+          nelat: currentBounds.getNorthEast().lat()
         },
         success: function(data) {
           var marker;
@@ -81,6 +83,9 @@ function setupEvents() {
               position: new google.maps.LatLng(item.location.lng, item.location.lat),
               map: map,
               title:"dummy"
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+              window.location.href = '/beacon/'+item._id
             });
             beacons.push(marker);
           }

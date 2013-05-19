@@ -17,7 +17,7 @@ BeaconSchema = new mongoose.Schema
   endDate:
     type: Date
     default: Date.now
-  userId: { type: mongoose.Schema.ObjectId, ref: 'User' }
+  userId: { type: String, ref: 'User' }
   price: Number
   quantity: Number
   title: String
@@ -28,7 +28,7 @@ BeaconSchema = new mongoose.Schema
 
 TransactionSchema = new mongoose.Schema
   identifier: String
-  offerId: { type: mongoose.Schema.ObjectId, ref: 'Offer' }
+  beaconId: { type: mongoose.Schema.ObjectId, ref: 'Beacon' }
   buyerId: { type: mongoose.Schema.ObjectId, ref: 'User' }
   quantity: Number
   date:
