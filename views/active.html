@@ -85,42 +85,17 @@
         <div data-magellan-destination="history">
           <h3 class="splitter">History</h3>
           <ul class="panes">
+            <% for (var i=0; i<history.length; i++) { %>
             <li>
               <img src="/img/hotdog.jpg" alt="Peter Blatchford" class="avatar">
-              <h4>Hot Dog</h4>
-              <span class="right price">£1.00</span>
-              <span class="isMeta">13/03/13</span>
+              <h4><%=history[i] .title %></h4>
+              <span class="right price">£<%=history[i].price %></span>
+              <span class="isMeta"><%=history[i].startDate %></span>
               <br>
-              <span><strong>200</strong> Sold</span>
+              <span><strong><%=history[i].transactions.length %></strong> Sold</span>
               <a href="#" class="button">Re-Activate this Beacon</a>
             </li>
-            <li>
-              <img src="/img/hamburger.jpg" alt="Peter Blatchford" class="avatar">
-              <h4>Hamburger</h4>
-              <span class="right price">£1.00</span>
-              <span class="isMeta">13/03/13</span>
-              <br>
-              <span><strong>195</strong> Sold</span>
-              <a href="#" class="button">Re-Activate this Beacon</a>
-            </li>
-            <li>
-              <img src="/img/cappucino.jpg" alt="Peter Blatchford" class="avatar">
-              <h4>Cappucino</h4>
-              <span class="right price">£1.00</span>
-              <span class="isMeta">13/03/13</span>
-              <br>
-              <span><strong>100</strong> Sold</span>
-              <a href="#" class="button">Re-Activate this Beacon</a>
-            </li>
-            <li>
-              <img src="/img/sandwich.jpg" alt="Peter Blatchford" class="avatar">
-              <h4>Sandwich</h4>
-              <span class="right price">£2.00</span>
-              <span class="isMeta">13/03/13</span>
-              <br>
-              <span><strong>200</strong> Sold</span>
-              <a href="#" class="button">Re-Activate this Beacon</a>
-            </li>
+            <% } %>
           </ul>
         </div>
 
