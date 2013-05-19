@@ -2,10 +2,21 @@ port = process.env.PORT || 3000
 host = process.env.HOST || "127.0.0.1"
 baseurl = process.env.BASEURL || "http://#{host}:#{port}"
 
+generateRandomString = (length) ->
+  length = length ? length : 32
+  string = ''
+  chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'
+  for _ in [1..length]
+    randomNumber = Math.floor(Math.random() * chars.length)
+    string += chars.substring(randomNumber, randomNumber + 1)
+  return string
+
+
 require('zappajs') host, port, ->
   manifest = require './package.json'
   db = require './db'
   fs = require 'fs'
+  braintree = require 'braintree'
   mongoose = require 'mongoose'
   passport = require 'passport'
   googOID = require('passport-google').Strategy
@@ -24,6 +35,13 @@ require('zappajs') host, port, ->
 
   passport.deserializeUser (user, done) ->
     db.findUserById user._id, done
+
+  gateway = braintree.connect({
+    environment: braintree.Environment.Sandbox,
+    merchantId: "6nfqbd84b88kwvkt",
+    publicKey: "vn2frdkgk7vk2bq7",
+    privateKey: "4695184582ce821b4f6b45a442b98d64"
+  })
 
   @configure =>
     @use 'cookieParser',
@@ -56,13 +74,35 @@ require('zappajs') host, port, ->
   @get '/beacons/add': ->
     @render 'add.jade'
 
-  @get '/home': ->
-    md = require('node-markdown').Markdown
-    fs.readFile 'README.md', 'utf-8', (err, data) =>
-      @render 'markdown.jade', {md: md, markdownContent: data, title: manifest.name, id: 'home', brand: manifest.name}
+  @get '/pay': ->
+    @render 'payment.html'
 
-  @get '/source': ->
-    @response.redirect manifest.source
+  @post '/pay/execute', (req, res) ->
+    saleRequest = {
+      amount: "217.00",
+      creditCard: {
+        number: @body.ccnumber,
+        cvv: @body.cvv,
+        expirationMonth: @body.exp_month,
+        expirationYear: @body.exp_year
+      },
+      options: {
+        submitForSettlement: true,
+        storeInVaultOnSuccess: true
+      }
+    }
+
+    gateway.transaction.sale(
+      saleRequest, (err, result) ->
+        console.log err, result
+        if result.success
+          ourTransactionId = generateRandomString(5)
+          res.redirect '/success/'+ourTransactionId
+        else
+          res.send "<h1>Error:  " + result.message + "</h1>")
+
+  @get '/success/:id': ->
+    @render 'success.html', {transactionId: @params.id}
 
   # API
 

@@ -35,6 +35,7 @@
     "passport":               ">= 0.1.17",
     "passport-google":        ">= 0.3",
     "node-markdown":          ">= 0.1",
-    "coffee-script":          ">= 1.6"
+    "coffee-script":          ">= 1.6",
+    "braintree":              "*"
   }
 }
