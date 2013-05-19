@@ -8,6 +8,12 @@ db =
       console.log "Error retrieving beacons:", err if err?
       done beacons
 
+  findBeaconsInBox: (swlng, swlat, nelng, nelat, done) ->
+    box = [[parseFloat(swlng), parseFloat(swlat)], [parseFloat(nelng), parseFloat(nelat)]]
+    Beacon.find {location: {$geoWithin: {$box: box}}}, (err, beacons) ->
+      console.log "Error retrieving beacons:", err if err?
+      done beacons
+
   findBeaconById: (id, done) ->
     Beacon.findById id, (err, beacon) ->
       console.log "Error retrieving beacon:", err if err?

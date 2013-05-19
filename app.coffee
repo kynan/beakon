@@ -130,5 +130,9 @@ require('zappajs') host, port, ->
       @response.redirect '/'
 
   @get '/beacons': ->
-    db.findBeaconsNear {lng: @query.lng or 51.5135, lat: @query.lat or -0.0868}, @query.radius or 100, (beacons) =>
-      @response.json beacons
+    if @query.nelng and @query.nelat and @query.swlng and @query.swlat
+      db.findBeaconsInBox @query.swlng, @query.swlat, @query.nelng, @query.nelat, (beacons) =>
+        @response.json beacons
+    else
+      db.findBeaconsNear {lng: @query.lng or 51.5135, lat: @query.lat or -0.0868}, @query.radius or 100, (beacons) =>
+        @response.json beacons

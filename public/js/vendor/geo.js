@@ -68,10 +68,12 @@ function setupEvents() {
       $.ajax({
         dataType: "json",
         url: '/beacons',
-        type: 'POST',
+        type: 'GET',
         data: {
-          ne: {lat: currentBounds.getNorthEast().lat(), lng: currentBounds.getSouthWest().lng()},
-          sw: {lat: currentBounds.getSouthWest().lat(), lng: currentBounds.getSouthWest().lng()}
+          swlng: currentBounds.getSouthWest().lng(),
+          swlat: currentBounds.getSouthWest().lat(),
+          nelng: currentBounds.getNorthEast().lng(),
+          nelat: currentBounds.getNorthEast().lat()
         },
         success: function(data) {
           var marker;
