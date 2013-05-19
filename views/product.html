@@ -28,8 +28,8 @@
     </div>
     <div class="row">
       <div class="large-12 small-12 columns">
-        <h1>Coffee for a quid!</h1>
-        <p>Flash sale, 200 coffees for a quid, first come, first served!</p>
+        <h1><%= beacon.title %></h1>
+        <p><%= beacon.description %></p>
         <p class="isMeta">Expires in: <strong>23 minutes</strong></p>
         <form action='/pay'>
             <input type="hidden" name="beacon" value="<%= beaconId %>">

@@ -21,7 +21,7 @@ function createMap() {
 }
 
 function initMap(coords) {
-  $('#status').hide();
+  $('#notification').hide();
 
   var latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
   map.setCenter(latlng);
