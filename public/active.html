@@ -22,39 +22,120 @@
         </object>
       </a>
     </header>
+    <div class="alert-box success">
+      <h1>Beakon Transmitting</h1>
+    </div>
+    <div data-magellan-expedition="fixed">
+      <dl class="sub-nav">
+        <dd data-magellan-arrival="sales"><a href="#sales">Sales</a></dd>
+        <dd data-magellan-arrival="history"><a href="#history">History</a></dd>
+      </dl>
+    </div>
+    
     <div class="row">
       <div class="twelve columns">
-        <h1>Beakon Running</h1>
-        <div data-magellan-expedition="fixed">
-          <dl class="sub-nav">
-            <dd data-magellan-arrival="build"><a href="#build">Customers</a></dd>
-            <dd data-magellan-arrival="js"><a href="#js">History</a></dd>
-          </dl>
-        </div>
+       
+        
 
-        <div data-magellan-expedition="fixed">
+        <!-- <div data-magellan-expedition="fixed">
           <ul class="sub-nav">
             <li data-magellan-arrival="build">
-              <p>Assuming you can get consistently-looking numbers across your pictures, out-of-box OCR will not know how to recognize those patterns. But for example ABBYY OCR technology allows you to train it for specific reoccurring patterns. Consistency needs to be across those patterns, meaning number 1 should look very similar across all cards, even if it does not look like conventional number 1 character in printed text. That would by my only idea that might have descent to good result.</p>
+              <a href="#build">History</a>
             </li>
             <li data-magellan-arrival="js">
-              <p>I agree with others who posted here that scanning CC is not likely to give you good OCR results. However, if you are going to try anyway, you should try with some of the high-quality OCR engines and not with the free ones, because with bad quality images the free engines are not likely to produce any useful results.
-
-One of the good libraries that has 3 different OCR engines is lead tools. They have an online demo that allows you to upload sample images and try with them without having to download anything. You can find it here:</p>  
+              <a href="#js">Sales</a>
+            </li>
+          </ul>
+        </div> -->
+        <a name="sales"></a>
+        <div data-magellan-destination="sales">
+          <h3 class="splitter">Sales</h3>
+          <ul class="panes">
+            <li>
+              <img src="img/peter.jpg" alt="Peter Blatchford" class="avatar">
+              <h4>Peter Blatchford</h4>
+              <span class="success label">PAID</span><span class="isMeta">25m away</span>
+              <br>
+              <span class="label label-large">4gfss</span>
+            </li>
+            <li>
+              <img src="img/blank.png" alt="Srini Rentala" class="avatar">
+              <h4>Srini Rentala</h4>
+              <span class="success label">PAID</span><span class="isMeta">12m away</span>
+              <br>
+              <span class="label label-large">3993g</span>
+            </li>
+            <li>
+              <img src="img/florian.jpg" alt="Peter Blatchford" class="avatar">
+              <h4>Florian Rathgeber</h4>
+              <span class="success label">PAID</span><span class="isMeta">25m away</span>
+              <br>
+              <span class="label label-large">daf44</span>
+            </li>
+            <li>
+              <img src="img/michael.jpg" alt="Peter Blatchford" class="avatar">
+              <h4>Michael Elsdoerfer</h4>
+              <span class="success label">PAID</span><span class="isMeta">25m away</span>
+              <br>
+              <span class="label label-large">fdgd8</span>
+            </li>
+          </ul>
+        </div>
+        <a name="history"></a>
+        <div data-magellan-destination="history">
+          <h3 class="splitter">History</h3>
+          <ul class="panes">
+            <li>
+              <img src="img/hotdog.jpg" alt="Peter Blatchford" class="avatar">
+              <h4>Hot Dog</h4>
+              <span class="right price">£1.00</span>
+              <span class="isMeta">13/03/13</span>
+              <br>
+              <span><strong>200</strong> Sold</span>
+              <a href="#" class="button">Re-Activate this Beacon</a>
+            </li>
+            <li>
+              <img src="img/hamburger.jpg" alt="Peter Blatchford" class="avatar">
+              <h4>Hamburger</h4>
+              <span class="right price">£1.00</span>
+              <span class="isMeta">13/03/13</span>
+              <br>
+              <span><strong>195</strong> Sold</span>
+              <a href="#" class="button">Re-Activate this Beacon</a>
+            </li>
+            <li>
+              <img src="img/cappucino.jpg" alt="Peter Blatchford" class="avatar">
+              <h4>Cappucino</h4>
+              <span class="right price">£1.00</span>
+              <span class="isMeta">13/03/13</span>
+              <br>
+              <span><strong>100</strong> Sold</span>
+              <a href="#" class="button">Re-Activate this Beacon</a>
+            </li>
+            <li>
+              <img src="img/sandwich.jpg" alt="Peter Blatchford" class="avatar">
+              <h4>Sandwich</h4>
+              <span class="right price">£2.00</span>
+              <span class="isMeta">13/03/13</span>
+              <br>
+              <span><strong>200</strong> Sold</span>
+              <a href="#" class="button">Re-Activate this Beacon</a>
             </li>
           </ul>
         </div>
 
-        <form action="">
-          
-          <input type="submit" value="Stop this beakon" class="button">
-          <input type="submit" value="Extend this beakon" data-reveal-id="extendBeakon" class="secondary button">
-  
-        </form>
+        
       </div>
     </div>
     
   </section>
+  <footer>
+
+    <ul class="button-group round even-2">
+      <li><a href="#" class="button alert">De-Activate Beakon</a></li>
+      <li><a href="#" class="button" data-reveal-id="extendBeakon">Extend Beakon</a></li>
+    </ul>
+  </footer>
 
 <!-- extension modal -->
 

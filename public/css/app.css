@@ -1,8 +1,6 @@
 html {
-  height: 100%
 }
 body {
-  height: 100%;
   margin: 0px;
   padding: 0px;
   background: #EAEAEA;
@@ -13,16 +11,24 @@ body {
 }
 #wrapper {
   width: 100%;
-  top: 0;
 }
 
 .isMeta {
   opacity: 0.5;
 }
 
-button {
-  box-shadow: none;
-  border: none;
+.button {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.button.negative {
+  background: red;
+}
+
+.small-block-grid-2 .button {
+  display: block;
+  margin-top: 2px;
 }
 
 header {
@@ -80,7 +86,9 @@ footer {
   bottom: 0;
   background: #222E3C;
   color: #FFF;
+  padding: 1em 1em 0;
 }
+
 
 .subNav1, .subNav2 {
   color: #FFF;
@@ -184,6 +192,72 @@ input:focus:-ms-input-placeholder {
     color: #DDD;
 }
 
+.sub-nav dt.active a, .sub-nav dd.active a {
+  background: #5da423;
+}
+
+.splitter {
+  padding-top: 2em;
+}
+
+.success.label {
+  margin-right: 1em;
+}
+
+.alert-box.success {
+  border: none;
+  margin: 0;
+}
+
+[data-magellan-expedition] {
+  border-bottom: 4px solid #5da423;
+}
+
+.alert-box.success h1 {
+  color: #FFF;
+  text-align: center;
+}
+
+
+.panes {
+  list-style-type: none;
+}
+
+.panes li {
+  display: block;
+  clear: both;
+  overflow: hidden;
+  padding: 1em 0;
+  border-top: 1px solid #FFF;
+
+  border-bottom: 1px solid #CCC;
+}
+
+.panes img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin-right: 1em;
+  padding: 0.25em;
+  border: 1px solid #CCC;
+  background: #FFF;
+}
+
+.right.price {
+  font-weight: 900;
+  font-size: 2em;
+}
+
+span.label.label-large {
+  background: #F1C40F;
+  color: #000;
+  font-size: 1.5em;
+  font-weight: 900;
+
+}
+
+.panes h4 {
+}
 
 
 /* PAYMENT */
