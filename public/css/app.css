@@ -5,6 +5,8 @@ body {
   height: 100%;
   margin: 0px;
   padding: 0px;
+  background: #EAEAEA;
+
 }
 #mapbg {
   height: 100%;
@@ -108,12 +110,15 @@ footer {
 
 #ccnumber {
   width: 100%;
+  padding-left: 1em;
 }
 
 .reveal label {
   color: #000;
   margin-left: 1em;
   display: inline;
+  text-transform: uppercase;
+  font-size: 0.75em !important;
 }
 
 .form-row {
@@ -125,7 +130,7 @@ footer {
   border-radius: 0.5em 0.5em 0 0;
   border-bottom: none;
 }
-.form-row-bottom {
+.row.collapse.form-row-bottom {
   border-radius:0 0 0.5em 0.5em;
   border-top: none;
   margin-bottom: 1em;
@@ -136,6 +141,7 @@ footer {
   box-shadow: none;
   display: inline;
   width: auto;
+  margin-bottom: 0;
 }
 .form-row input.dateField, .form-row input.dateField:focus {
   width: 2em;
@@ -146,3 +152,42 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+input::-webkit-input-placeholder {
+    color: #999;
+}
+input:focus::-webkit-input-placeholder {
+    color: #DDD;
+}
+
+/* Firefox < 19 */
+input:-moz-placeholder {
+    color: #999;
+}
+input:focus:-moz-placeholder {
+    color: #DDD;
+}
+
+/* Firefox > 19 */
+input::-moz-placeholder {
+    color: #999;
+}
+input:focus::-moz-placeholder {
+    color: #DDD;
+}
+
+/* Internet Explorer 10 */
+input:-ms-input-placeholder {
+    color: #999;
+}
+input:focus:-ms-input-placeholder {
+    color: #DDD;
+}
+
+
+
+/* PAYMENT */
+
+.page-payment {
+/*  background: #EAEAEA;
+*/}

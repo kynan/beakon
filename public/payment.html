@@ -13,7 +13,7 @@
 </head>
 <body>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <section id="wrapper">
+  <section id="wrapper" class="page-payment">
     <header>
       <a href="index.html">
         <object data="img/beakon.svg" type="img/svg+xml" alt="beakon">
@@ -32,12 +32,7 @@
               <input id="ccnumber" name="ccnumber" type="text" size="20" placeholder="1111 2222 3333 4444" data-stripe="number"/>
             </div>
             <div class="row form-row form-row-bottom collapse">
-              <div class="large-6 small-6 columns">
-                <label class="inline">
-                  <span>CVC</span>
-                </label>
-                <input type="text" size="4" data-stripe="cvc" placeholder="123"/>
-              </div>
+              
 
               <div class="large-6 small-6 columns">
                 <label class="inline">
@@ -46,6 +41,12 @@
                 <input type="number" class="dateField" min="1" max="12" size="2" placeholder="MM" data-stripe="exp-month"/>
                 <input type="number" class="dateField" max="18" size="2" placeholder="YY" data-stripe="exp-year"/>  
                 </label>
+              </div>
+              <div class="large-6 small-6 columns">
+                <label class="inline">
+                  <span>CVV</span>
+                </label>
+                <input type="text" size="4" data-stripe="cvc" placeholder="123"/>
               </div>
             </div>
             <button class="primary button" id="emailsubmit" data-name="<?php echo $products[$i]['name']; ?>" data-price="<?php echo $products[$i]['price']; ?>" data-product-id="<?php echo $products[$i]['product_id']; ?>" type="submit">Save Card Details</button>
