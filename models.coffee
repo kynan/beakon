@@ -17,7 +17,7 @@ BeaconSchema = new mongoose.Schema
   endDate:
     type: Date
     default: Date.now
-  userId: { type: mongoose.Schema.ObjectId, ref: 'User' }
+  userId: { type: String, ref: 'User' }
   price: Number
   quantity: Number
   title: String
