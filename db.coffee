@@ -22,7 +22,9 @@ db =
       done beacon
 
   findBeaconsByUser: (userId, done) ->
-    Beacon.find({userId: userId}).populate('transcations').exec (err, beacons) ->
+    #Beacon.find({userId: userId}).populate('transcations').exec (err, beacons) ->
+    # FIXME return all results for now
+    Beacon.find({}).populate('transcations').exec (err, beacons) ->
       console.log "Error retrieving beacons:", err if err?
       done beacons
 
