@@ -35,10 +35,24 @@ TransactionSchema = new mongoose.Schema
     type: Date
     default: Date.now
 
+OpenIDSchema = new mongoose.Schema
+  handle: String
+  provider: String
+  algorithm: String
+  secret: String
+  expires:
+    type: Date
+    default: Date.now
+OpenIDSchema.index expires: 1, expireAferSeconds: 0, (err, res) ->
+  if err
+    throw new Error 'Error setting TTL index on OpenID collection.'
+
 User = mongoose.model 'User', UserSchema
 Beacon = mongoose.model 'Beacon', BeaconSchema
 Transaction = mongoose.model 'Transaction', TransactionSchema
+OpenID = mongoose.model 'OpenID', OpenIDSchema
 
 module.exports.user = User
 module.exports.beacon = Beacon
 module.exports.transaction = Transaction
+module.exports.openID = OpenID

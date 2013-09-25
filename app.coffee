@@ -50,7 +50,7 @@ require('zappajs') host, port, ->
 
   # Authenication
 
-  passport.use new googOID
+  strategy = new googOID
     returnURL: "#{baseurl}/auth/google/return"
     , realm: baseurl
     , (identifier, profile, done) ->
@@ -58,6 +58,10 @@ require('zappajs') host, port, ->
       db.findOrCreateUser identifier, (err, user) ->
         profile._id = identifier
         done err, profile
+  strategy.saveAssociation db.saveAssociation
+  strategy.loadAssociation db.loadAssociation
+
+  passport.use strategy
 
   passport.serializeUser (user, done) ->
     done null, user

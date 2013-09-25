@@ -1,6 +1,7 @@
 models = require './models'
 Beacon = models.beacon
 User = models.user
+OpenID = models.openID
 
 db =
   findBeaconsNear: (location, radius, done) ->
@@ -53,5 +54,21 @@ db =
       beaconId: beaconId,
       buyerId: buyerId
     }
+
+  saveAssociation: (handle, provider, algorithm, secret, expiresIn, done) ->
+    OpenID.create {
+      handle: handle,
+      provider: provider,
+      algorithm: algorithm,
+      secret: secret,
+      expires: new Date(Date.now() + 1000 * expiresIn)
+    }, done
+
+  loadAssociation: (handle, done) ->
+    OpenID.findOne {handle: handle}, (error, result) ->
+      if error
+        return done error
+      else
+        return done null, result.provider, result.algorithm, result.secret
 
 module.exports = db
