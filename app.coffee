@@ -78,7 +78,9 @@ require('zappajs') host, port, ->
 
   @get '/auth/google', passport.authenticate 'google', (err, user) ->
     console.log err, user
-  @get '/auth/google/return', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) ->
+  @get '/auth/google/return', passport.authenticate('google', { failureRedirect: '/login' }, (err, user) ->
+    console.log err, user
+  ), (req, res) ->
     target = req.session.redirect_to || '/'
     delete req.session.redirect_to
     res.redirect target
