@@ -52,12 +52,13 @@ require('zappajs') host, port, ->
 
   strategy = new googOID
     returnURL: "#{baseurl}/auth/google/return"
-    , realm: baseurl
-    , (identifier, profile, done) ->
-      console.log 'user logged in:', identifier, profile
-      db.findOrCreateUser identifier, (err, user) ->
-        profile._id = identifier
-        done err, profile
+    realm: baseurl
+    stateless: true
+  , (identifier, profile, done) ->
+    console.log 'user logged in:', identifier, profile
+    db.findOrCreateUser identifier, (err, user) ->
+      profile._id = identifier
+      done err, profile
   strategy.saveAssociation db.saveAssociation
   strategy.loadAssociation db.loadAssociation
 
